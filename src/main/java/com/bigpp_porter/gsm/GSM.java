@@ -4,7 +4,7 @@ import com.bigpp_porter.gsm.blocks.Emerald_Slab;
 import com.bigpp_porter.gsm.blocks.GlowStone_Slab;
 import com.bigpp_porter.gsm.blocks.ModBlocks;
 import com.bigpp_porter.gsm.setup.ClientProxy;
-import com.bigpp_porter.gsm.setup.GSM_base;
+import com.bigpp_porter.gsm.setup.ModSetup;
 import com.bigpp_porter.gsm.setup.IProxy;
 import com.bigpp_porter.gsm.setup.ServerProxy;
 import net.minecraft.block.Block;
@@ -25,7 +25,8 @@ import org.apache.logging.log4j.Logger;
 public class GSM {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
-    public static final ItemGroup itemGroup = new GSM_base();
+
+    public static ModSetup setup = new ModSetup();
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -35,7 +36,7 @@ public class GSM {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-
+        setup.init();
     }
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
@@ -52,8 +53,12 @@ public class GSM {
 
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-            event.getRegistry().register(new BlockItem(ModBlocks.GLOWSTONE_SLAB, new Item.Properties()).setRegistryName("glowstone_slab"));
-            event.getRegistry().register(new BlockItem(ModBlocks.EMERALD_SLAB, new Item.Properties()).setRegistryName("emerald_slab"));
+            // Creative tab property
+            Item.Properties properties = new Item.Properties()
+                    .group(setup.itemGroup);
+            //item registry
+            event.getRegistry().register(new BlockItem(ModBlocks.GLOWSTONE_SLAB, properties).setRegistryName("glowstone_slab"));
+            event.getRegistry().register(new BlockItem(ModBlocks.EMERALD_SLAB, properties).setRegistryName("emerald_slab"));
 
         }
     }

@@ -3,5 +3,5 @@
   "block.gsm.emerald_slab": "Emerald Slab",
 
   "_comment": "Creative Tabs",
-  "ItemGroup.GSM_base": "Glowstone Mod"
+  "itemGroup.GlowstoneMod": "Glowstone Mod"
 }
