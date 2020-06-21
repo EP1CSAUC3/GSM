@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "gsm:block/emerald_slab" },
+    "type=top": { "model": "gsm:block/emerald_slab_top" },
+    "type=double": { "model": "block/emerald_block" }
+  }
+}

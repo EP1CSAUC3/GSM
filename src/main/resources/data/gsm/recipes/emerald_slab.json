@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result": {
+    "item": "gsm:emerald_slab",
+    "count": 6
+  }
+}
