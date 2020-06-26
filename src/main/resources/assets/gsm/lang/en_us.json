@@ -1,6 +1,12 @@
 {
   "block.gsm.glowstone_slab": "Glowstone Slab",
+  "block.gsm.glowstone_stairs":  "Glowstone Stairs",
+  "block.gsm.glowstone_wall":  "Glowstone Wall",
+  "block.gsm.glowstone_fence":  "Glowstone Fence",
   "block.gsm.emerald_slab": "Emerald Slab",
+  "block.gsm.emerald_stairs":  "Emerald Stairs",
+  "block.gsm.emerald_wall":  "Emerald Wall",
+  "block.gsm.emerald_fence":  "Emerald Fence",
 
   "_comment": "Creative Tabs",
   "itemGroup.GlowstoneMod": "Glowstone Mod"

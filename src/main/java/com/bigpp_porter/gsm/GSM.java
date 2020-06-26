@@ -1,43 +1,64 @@
 package com.bigpp_porter.gsm;
 
-import com.bigpp_porter.gsm.blocks.Emerald_Slab;
-import com.bigpp_porter.gsm.blocks.GlowStone_Slab;
-import com.bigpp_porter.gsm.blocks.ModBlocks;
-import com.bigpp_porter.gsm.setup.ClientProxy;
-import com.bigpp_porter.gsm.setup.ModSetup;
-import com.bigpp_porter.gsm.setup.IProxy;
-import com.bigpp_porter.gsm.setup.ServerProxy;
+import com.bigpp_porter.gsm.init.ModBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Optional;
+
+import static com.bigpp_porter.gsm.GSM.*;
+
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("gsm")
+@Mod(MOD_ID)
 public class GSM {
-
-    public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
-
-    public static ModSetup setup = new ModSetup();
-    // Directly reference a log4j logger.
+    public static final String MOD_ID = "gsm";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public GSM() {
-        // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        //noinspection Convert2MethodRef
+        DistExecutor.runForDist(
+                () -> () -> new SideProxy.Client(),
+                () -> () -> new SideProxy.Server()
+        );
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        setup.init();
+    public static ItemGroup gsmItemGroup = new ItemGroup("GlowstoneMod") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModBlocks.emerald_slab);
+        }
+    };
+
+    public static String getVersion() {
+        Optional<? extends ModContainer> o = ModList.get().getModContainerById(MOD_ID);
+        if (o.isPresent()) {
+            return o.get().getModInfo().getVersion().toString();
+        }
+        return "NONE";
     }
+
+    public static boolean isDevBuild() {
+        String version = getVersion();
+        return "NONE".equals(version);
+    }
+
+    public static ResourceLocation getId(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
+
+
+
 
     // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
     // Event bus for receiving Registry Events)
@@ -45,21 +66,10 @@ public class GSM {
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-            event.getRegistry().register(new GlowStone_Slab());
-            event.getRegistry().register(new Emerald_Slab());
-
-            //ModBlocks.EMERALD_SLAB = new Item.Properties().group(itemGroup)).setRegistryName(ModBlocks.EMERALD_SLAB.getRegistryName();
         }
 
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-            // Creative tab property
-            Item.Properties properties = new Item.Properties()
-                    .group(setup.itemGroup);
-            //item registry
-            event.getRegistry().register(new BlockItem(ModBlocks.GLOWSTONE_SLAB, properties).setRegistryName("glowstone_slab"));
-            event.getRegistry().register(new BlockItem(ModBlocks.EMERALD_SLAB, properties).setRegistryName("emerald_slab"));
-
         }
     }
 }

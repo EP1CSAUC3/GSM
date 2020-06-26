@@ -1,0 +1,9 @@
+
+{
+  "parent": "gsm:block/vertical_slab",
+  "textures": {
+    "side": "block/glowstone",
+    "top": "block/glowstone",
+    "bottom": "block/glowstone"
+  }
+}
