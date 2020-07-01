@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "gsm:block/emerald_ladder"          },
+    "facing=south": { "model": "gsm:block/emerald_ladder", "y":180 },
+    "facing=west":  { "model": "gsm:block/emerald_ladder", "y":270 },
+    "facing=east":  { "model": "gsm:block/emerald_ladder", "y":90  }
+  }
+}

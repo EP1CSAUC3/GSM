@@ -5,6 +5,11 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="C:\Users\Mike\Desktop\Minecraft_port\Light_Blocks_Mod" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="C:\Users\Mike\Desktop\Minecraft_port\Mods to port\1.12\NEI\MEI" />
         <option name="gradleJvm" value="#JAVA_HOME" />
       </GradleProjectSettings>

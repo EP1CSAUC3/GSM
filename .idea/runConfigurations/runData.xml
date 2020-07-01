@@ -3,9 +3,9 @@
   <configuration default="false" factoryName="Application" name="runData" singleton="false" type="Application">
     <option name="MAIN_CLASS_NAME" value="net.minecraftforge.userdev.LaunchTesting"/>
     <option name="VM_PARAMETERS" value="-Dforge.logging.console.level=debug -Dforge.logging.markers=SCAN,REGISTRIES,REGISTRYDUMP"/>
-    <option name="PROGRAM_PARAMETERS" value="--mod examplemod --all --output &quot;C:\Users\Mike\Desktop\Minecraft_port\Mods to port\1.12\NEI\MEI\src\generated\resources&quot;"/>
+    <option name="PROGRAM_PARAMETERS" value="--mod examplemod --all --output C:\Users\Mike\Desktop\Minecraft_port\Light_Blocks_Mod\src\generated\resources"/>
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$\run"/>
-    <module name="MEI.main"/>
+    <module name="Light_Blocks_Mod.main"/>
     <envs>
       <env name="MOD_CLASSES" value="examplemod%%$PROJECT_DIR$\build\resources\main;examplemod%%$PROJECT_DIR$\build\classes\java\main"/>
       <env name="MCP_MAPPINGS" value="snapshot_20200119-1.14.4"/>

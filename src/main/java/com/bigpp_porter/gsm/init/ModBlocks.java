@@ -1,6 +1,7 @@
 package com.bigpp_porter.gsm.init;
 
 import com.bigpp_porter.gsm.GSM;
+import com.bigpp_porter.gsm.block.DoorModBlock;
 import com.bigpp_porter.gsm.block.LadderModBlock;
 import com.bigpp_porter.gsm.block.StairsModBlock;
 import com.bigpp_porter.gsm.block.VerticalSlabModBlock;
@@ -24,12 +25,14 @@ public class ModBlocks {
     public static FenceBlock glowstone_fence;
     public static LadderBlock glowstone_ladder;
     public static VerticalSlabModBlock glowstone_vertical_slab;
+    public static DoorBlock glowstone_door;
     // Emerald
     public static SlabBlock emerald_slab;
     public static StairsBlock emerald_stairs;
     public static WallBlock emerald_wall;
     public static FenceBlock emerald_fence;
     public static LadderBlock emerald_ladder;
+    public static VerticalSlabModBlock emerald_vertical_slab;
 
 
     public static void registerAll(RegistryEvent.Register<Block> event) {
@@ -47,6 +50,7 @@ public class ModBlocks {
         glowstone_fence = register("glowstone_fence", new FenceBlock(Block.Properties.from(glowstone_slab)));
         glowstone_ladder = register("glowstone_ladder", new LadderModBlock(Block.Properties.from(glowstone_slab)));
         glowstone_vertical_slab = register("glowstone_vertical_slab", new VerticalSlabModBlock(Block.Properties.from(glowstone_slab)));
+        glowstone_door = register("glowstone_door", new DoorModBlock(Block.Properties.from(glowstone_slab)));
 
         // Emerald Blocks
         emerald_slab = register("emerald_slab", new SlabBlock(Block.Properties.create(Material.IRON, MaterialColor.EMERALD)
@@ -56,14 +60,16 @@ public class ModBlocks {
         emerald_stairs = register("emerald_stairs", new StairsModBlock(emerald_slab.getDefaultState(), Block.Properties.from(emerald_slab)));
         emerald_wall = register("emerald_wall", new WallBlock(Block.Properties.from(emerald_slab)));
         emerald_fence = register("emerald_fence", new FenceBlock(Block.Properties.from(emerald_slab)));
+        emerald_ladder = register("emerald_ladder", new LadderModBlock(Block.Properties.from(emerald_slab)));
+        emerald_vertical_slab = register("emerald_vertical_slab", new VerticalSlabModBlock(Block.Properties.from(emerald_slab)));
     }
 
-    private static <T extends Block> T register(String name, T block) {
+    public static <T extends Block> T register(String name, T block) {
         BlockItem item = new BlockItem(block, new Item.Properties().group(GSM.gsmItemGroup));
         return register(name, block, item);
     }
 
-    private static <T extends Block> T register(String name, T block, @Nullable BlockItem item) {
+    public static <T extends Block> T register(String name, T block, @Nullable BlockItem item) {
         ResourceLocation id = GSM.getId(name);
         block.setRegistryName(id);
         ForgeRegistries.BLOCKS.register(block);
